@@ -91,7 +91,6 @@ int recv_socket(int sock, char *recv_buf, int recv_len) {
   ssize_t len;
   for (;;) {
     if ((len = recv(sock, recv_buf, recv_len, 0)) > 0){
-      // printf("ip received len : %d\n",len);
       return len;
     }
     else
@@ -189,8 +188,6 @@ int recv_packet(char* server_ip, int server_port) {
     int sock;
     struct sockaddr_in server_address;
 
-    // int len = 0;
-    // socklen_t client_addr_len;
     if ((sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0) {
         puts("socket Error!");
         return -1;

@@ -184,7 +184,7 @@ int send_file(int socket, char packet_type, char* packet_buf, int packet_len){
   return 0;
 }
 
-void *fileserver_main(void *arg) {
+void *fileserver_execute(void *arg) {
   // int sock = (intptr_t)arg;
   char *filebuf = NULL, *packet_buf = NULL;
   int file_len = 0, packet_len = 0;
@@ -341,7 +341,7 @@ int init_fileserver(int port_num) {
 
       add_peer(client_conn_count, peer_address, client_port);
       pthread_t thread;
-      int thread_error = pthread_create(&thread, NULL, fileserver_main,
+      int thread_error = pthread_create(&thread, NULL, fileserver_execute,
                                         (void *)(intptr_t)client_socket);
 
       if (thread_error) {
